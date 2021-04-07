@@ -105,37 +105,37 @@ public:
         for(int i=0;i<state_size;++i)
          state_vector[i]=0;
     }
-    void init_policy(int seed)
-    {
-        srand(seed);
-        for(int i=0;i<state_size;++i)
-        {
-            policy[i]=rand()%actions;
-        }
-    }
-    void solve_policy_itr(int itr)
-    {
-        init_policy(0);
-        init_state(0);
-        vector<double> temp(state_size);
-        for(int i=0;i<state_size;++i)
-        {   int act=policy[i];
-            temp[i]=reward_matrix[i][act]+Gamma*vector_dot(action_matrix[act][i],state_vector);
-        }
-        state_vector=temp;
-        while(itr)
-        {
-            itr--;
-            for(int i=0;i<state_size;++i)
-            {   double val;
-                int act;
-                for(int j=0;j<actions;++j)
-                {
-                    double v=reward_matrix[i][j];
-                }
-            }
-        }
-    }
+    // void init_policy(int seed)
+    // {
+    //     srand(seed);
+    //     for(int i=0;i<state_size;++i)
+    //     {
+    //         policy[i]=rand()%actions;
+    //     }
+    // }
+    // void solve_policy_itr(int itr)
+    // {
+    //     init_policy(0);
+    //     init_state(0);
+    //     vector<double> temp(state_size);
+    //     for(int i=0;i<state_size;++i)
+    //     {   int act=policy[i];
+    //         temp[i]=reward_matrix[i][act]+Gamma*vector_dot(action_matrix[act][i],state_vector);
+    //     }
+    //     state_vector=temp;
+    //     while(itr)
+    //     {
+    //         itr--;
+    //         for(int i=0;i<state_size;++i)
+    //         {   double val;
+    //             int act;
+    //             for(int j=0;j<actions;++j)
+    //             {
+    //                 double v=reward_matrix[i][j];
+    //             }
+    //         }
+    //     }
+    // }
     void solve_value_itr(int itr)
     {
         double g=Gamma;
@@ -210,12 +210,12 @@ int main(int argc , char *argv[])
  M.solve_value_itr(itr);
 
 for(int i=0;i<9;++i)
-{
-    cout<<M.action_map[M.policy[i]].c_str()<<endl;
+{    string a,b;
+    a=M.state_map[i+1];
+    b=M.action_map[M.policy[i]];
+    cout<<a<<'\n'<<b<<"\n\n";   
     
-    
-    
-    //cout<<M.action_map[i+1]<<'\n';
+
 }
  
 }
